@@ -17,14 +17,14 @@ type Lead struct{
 }
 
 
-func GetLeads(c *fiber.ctx){
+func GetLeads(c *fiber.Ctx){
 	db := database.DBConn
 	var leads []Lead
 	db.Find(&leads)
 	c.JSON(leads)
 }
 
-func GetLead(c *fiber.ctx){
+func GetLead(c *fiber.Ctx){
 	id := c.Params("id")
 	db := database.DBConn
 	var lead Lead 
@@ -32,7 +32,7 @@ func GetLead(c *fiber.ctx){
 	c.JSON(lead)
 }
 
-func NewLead(c *fiber.ctx){
+func NewLead(c *fiber.Ctx){
 	db := database.DBConn
 	lead := new(Lead)
 	if err := c.BodyParser(lead); err != nil {
@@ -42,7 +42,7 @@ func NewLead(c *fiber.ctx){
 	c.JSON(lead)
 }
 
-func DeleteLead(c *fiber.ctx){
+func DeleteLead(c *fiber.Ctx){
 	id := c.Params("id")
 	db := database.DBConn
 
